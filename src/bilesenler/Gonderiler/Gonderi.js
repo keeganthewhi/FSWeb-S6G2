@@ -5,7 +5,7 @@ import GonderiBasligi from "./GonderiBasligi";
 
 const Gonderi = (props) => {
   // 🔥 Bu bileşenin parentının aşağıdaki propları düzgün gönderdiğinden emin olun.
-  const { gonderi, gonderiyiBegen } = props;
+  const { gonderi, gonderiyiBegen, yeniYorumEkle } = props;
 
   return (
     <div className="post-border">
@@ -21,9 +21,13 @@ const Gonderi = (props) => {
         />
       </div>
       {/* BegenBolumu düzgün çalışması için ihtiyaç duyduğu tüm proplara sahip mi? */}
-      <BegenBolumu gonderiyiBegen={() => gonderiyiBegen(gonderi.id)} />
+      <BegenBolumu 
+      begeniSayisi = {gonderi.likes}
+      gonderiyiBegen={() => gonderiyiBegen(gonderi.id)} 
+      liked={gonderi.liked}
+      />
       {/* Yorumlar da proplara dikkat istiyor! */}
-      <Yorumlar />
+      <Yorumlar yorumlar={gonderi.comments} yeniYorumEkle={yeniYorumEkle} gonderId = {gonderi.id}/>
     </div>
   );
 };
